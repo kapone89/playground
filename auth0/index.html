@@ -61,10 +61,20 @@
 
     <script type="text/javascript">
       // Initiating our Auth0Lock
-      var lock = new Auth0Lock(
-      'tIyhEvGr1iOhcxe-OiRW14AfUHOxI70r',
-      'kapone89.auth0.com'
-      );
+      // var lock = new Auth0Lock(
+      // 'tIyhEvGr1iOhcxe-OiRW14AfUHOxI70r',
+      // 'kapone89.auth0.com'
+      // );
+
+      var lock = new Auth0Lock('tIyhEvGr1iOhcxe-OiRW14AfUHOxI70r', 'kapone89.auth0.com', {
+        auth: {
+          redirectUrl: 'http://localhost:3000/auth/oauth2/callback',
+          responseType: 'code',
+          params: {
+            scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+          }
+        }
+      });
 
       // Listening for the authenticated event
       lock.on("authenticated", function(authResult) {
